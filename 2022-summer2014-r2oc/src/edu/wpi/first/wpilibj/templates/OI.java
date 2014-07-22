@@ -1,8 +1,8 @@
 
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.templates.controllers.Attack3;
+import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,7 +15,23 @@ public class OI {
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
+     private final Xbox xbawks;
+    private final Attack3 attack;
     
+    public OI()
+    {
+        xbawks = new Xbox(1); //change posrts
+        attack = new Attack3(2); // change port
+    }
+    
+    public Xbox getXbox()
+    {
+        return xbawks;
+    }
+    public Attack3 getAttack()
+    {
+        return attack;
+    }
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
     // you want to build a customized operator interface.
