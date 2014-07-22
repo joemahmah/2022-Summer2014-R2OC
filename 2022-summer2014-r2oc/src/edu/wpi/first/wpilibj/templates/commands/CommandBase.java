@@ -3,8 +3,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.subsystems.PickUpSystem;
+import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -16,7 +15,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons);
+    public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -27,7 +26,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-       // SmartDashboard.putData(pickUp);
+        SmartDashboard.putData(exampleSubsystem);
     }
 
     public CommandBase(String name) {
