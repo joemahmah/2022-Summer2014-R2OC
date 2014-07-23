@@ -61,4 +61,8 @@ public class genericBasicSwerve extends Subsystem {
     public void moveTurnMotor(int x, double speed){
         turnMotors[x].set(speed);
     }
+    public void turnTo(int index, double angle)
+    {
+        
+    }
 }
