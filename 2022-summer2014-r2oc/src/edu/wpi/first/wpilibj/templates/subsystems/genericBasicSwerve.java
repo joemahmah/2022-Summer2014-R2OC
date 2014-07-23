@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.util.Vector;
 
 /**
@@ -46,12 +48,36 @@ public class genericBasicSwerve extends Subsystem {
         }
     }
     
+    public void move(double x, double y, double pow){
+        calcMoveVect(x, y);
+        calcRotateVect(pow);
+        finalVects = Vector.add(moveVect, rotVect);
+        for(int i=0; i<4; i++){
+            turnTo(i,finalVects[i].getAngle());
+            driveMotors[i].set(finalVects[i].getMagnitude());
+        }
+    }
+    
     public void calcMoveVect(double x, double y){
-        
+        moveVect = new Vector(x, y);
     }
     
     public void calcRotateVect(double pow){
-        
+        if(pow < 0){
+            rotVect[0] = new Vector(0, Math.abs(pow));
+            rotVect[1] = new Vector(pow, Math.abs(pow));
+            rotVect[2] = new Vector(0, Math.abs(pow));
+            rotVect[3] = new Vector(-pow, Math.abs(pow));
+        } else if(pow > 0){
+            rotVect[0] = new Vector(pow, Math.abs(pow));
+            rotVect[1] = new Vector(0, Math.abs(pow));
+            rotVect[2] = new Vector(-pow, Math.abs(pow));
+            rotVect[3] = new Vector(0, Math.abs(pow));
+        } else{
+            for(int i=0; i<4; i++){
+                rotVect[i] = new Vector(0, 0);
+            }
+        }
     }
     
     public void moveDriveMotor(int x, double speed){
@@ -61,8 +87,14 @@ public class genericBasicSwerve extends Subsystem {
     public void moveTurnMotor(int x, double speed){
         turnMotors[x].set(speed);
     }
-    public void turnTo(int index, double angle)
-    {
-        
+    public void turnTo(int index, double angle){
+        while(turnEncoders[index].get() != (int)(Math.toDegrees(angle)*250/360.0)){    
+            if(turnEncoders[index].get() < (int)(Math.toDegrees(angle)*250/360.0)){
+                turnMotors[index].set(RobotMap.wheelTurnSpeed);
+            } else if(turnEncoders[index].get() > (int)(Math.toDegrees(angle)*250/360.0)){
+                turnMotors[index].set(RobotMap.wheelTurnSpeed);
+            }
+        }
+        turnMotors[index].set(0);
     }
 }
