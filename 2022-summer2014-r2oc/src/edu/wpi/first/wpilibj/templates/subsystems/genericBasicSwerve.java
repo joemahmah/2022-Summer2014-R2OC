@@ -23,6 +23,13 @@ public class genericBasicSwerve extends Subsystem {
     Jaguar TurnMotors[];
     Encoder TurnEncders[];
     
+    Vector moveVect[];
+    Vector rotVect[];
+    
+    public genericBasicSwerve(){
+        
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -32,7 +39,11 @@ public class genericBasicSwerve extends Subsystem {
     
     }
     
-    public void rotate(){
+    public void calcMoveVect(double x, double y){
+        
+    }
+    
+    public void calcRotateVect(double pow){
         
     }
     
