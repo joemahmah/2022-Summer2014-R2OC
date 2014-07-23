@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.CrabDrive;
 import edu.wpi.first.wpilibj.templates.subsystems.PickUpSystem;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -18,6 +19,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
      public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[1]);
      public static CrabDrive crabs = new CrabDrive(RobotMap.soles, RobotMap.talons);
+     public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor, RobotMap.shooterEncoder1, RobotMap.shooterEncoder2);
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
