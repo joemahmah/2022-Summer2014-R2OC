@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Shooter extends PIDSubsystem {
 
-    private static final double Kp = 0.0;
+    private static final double Kp = 5.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
     
@@ -66,9 +66,10 @@ public class Shooter extends PIDSubsystem {
          */
         springPullTalon.set(output);
     }
-    public void setShootPoint(int percent)
+    //set point is in inches of extension of the spring
+    public void setShootPoint(int distanceExtended)
     {
-        setSetpoint(percent);
+        setSetpoint(distanceExtended);
     }
     public void releaseShooter()
     {

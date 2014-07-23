@@ -49,8 +49,12 @@ Talon t1;
         sole.set(DoubleSolenoid.Value.kReverse);
         isDown = false;
         }
-
     }
+    public boolean isPickupDown()
+    {
+        return isDown;
+    }
+    
     public void moveTalon(double speed)
     {
     t1.set(speed);
