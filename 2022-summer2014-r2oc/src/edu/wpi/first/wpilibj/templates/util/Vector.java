@@ -36,5 +36,24 @@ public class Vector {
         return angle;
     }
     
+    public double getX(){
+        return x;
+    }
+    
+    public double getY(){
+        return y;
+    }
+    
+    public static Vector add(Vector a, Vector b){
+        return new Vector(a.getX() + b.getX(), a.getY() + b.getY());
+    }
+    
+    public static Vector[] add(Vector a, Vector b[]){
+        Vector vects[] = new Vector[b.length];
+        for(int i=0; i<b.length; i++){
+            vects[i] = add(a,b[i]);
+        }
+        return vects;
+    }
     
 }
