@@ -1,9 +1,9 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.subsystems.CrabDrive;
 import edu.wpi.first.wpilibj.templates.subsystems.PickUpSystem;
 
 /**
@@ -16,8 +16,8 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-     public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons);
-
+     public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[1]);
+     public static CrabDrive crabs = new CrabDrive(RobotMap.soles, RobotMap.talons);
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
