@@ -15,6 +15,10 @@
 /2022-summer2014-r2oc/build/
 /2022-summer2014-r2oc/nbproject/private/
 /2022-summer2014-r2oc/nbproject/project.xml
+/2022-Summer2014-R2OC/build/
+/2022-Summer2014-R2OC/nbproject/private/
+/2022-Summer2014-R2OC/nbproject/project.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Test/nbproject/private/
