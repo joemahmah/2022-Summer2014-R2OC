@@ -30,8 +30,15 @@ public class CrabCommand extends CommandBase {
         double y = controls.GetLeftY();
         if(x== 0||y ==0)
         {
-            
         Vector vec = new Vector(x,y);
+        double angle = vec.getAngle();
+        double speed = vec.getMagnitude();
+        crabs.rotate(angle, 1, 3); //temporary code to rotatet the wheels
+        crabs.setSpeed(speed, 1); //temporary code to move the wheels at that speed
+        }
+        else if(controls.GetBValue()==true)
+        {
+            crabs.stop();
         }
     }
 
