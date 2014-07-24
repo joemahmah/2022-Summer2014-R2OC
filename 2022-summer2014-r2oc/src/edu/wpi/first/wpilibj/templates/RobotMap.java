@@ -1,5 +1,6 @@
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 
@@ -33,7 +34,7 @@ public class RobotMap {
     public static final double movePercentage = .7;
     public static final double turnPercentage = .3;
     
-    public static final Jaguar turnMotors[] = {};
-    public static final Jaguar driveMotors[] = {};
-    public static final Encoder turnEncoders[] = {};
+    public static final Jaguar turnMotors[] = {new Jaguar(1),new Jaguar(2),new Jaguar(3),new Jaguar(4)};
+    public static final Jaguar driveMotors[] = {new Jaguar(5),new Jaguar(6),new Jaguar(7),new Jaguar(8)};
+    public static final Encoder turnEncoders[] = {new Encoder(3, 4, true, CounterBase.EncodingType.k2X),new Encoder(3, 4, true, CounterBase.EncodingType.k2X),new Encoder(3, 4, true, CounterBase.EncodingType.k2X),new Encoder(3, 4, true, CounterBase.EncodingType.k2X)};
 }
