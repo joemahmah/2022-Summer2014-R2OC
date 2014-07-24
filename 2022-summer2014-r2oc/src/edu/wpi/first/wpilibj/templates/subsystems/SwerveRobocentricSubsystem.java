@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.SwerveRobocentricCommand;
 import edu.wpi.first.wpilibj.templates.util.Vector;
 
 /**
  *
  * @author Michael
  */
-public class genericBasicSwerve extends Subsystem {
+public class SwerveRobocentricSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -29,7 +30,7 @@ public class genericBasicSwerve extends Subsystem {
     Vector rotVect[];
     Vector moveVect;
     
-    public genericBasicSwerve(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[]){
+    public SwerveRobocentricSubsystem(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[]){
         this.turnMotors = turnMotors;
         this.driveMotors = driveMotors;
         this.turnEncoders = turnEncoders;
@@ -37,7 +38,11 @@ public class genericBasicSwerve extends Subsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new SwerveRobocentricCommand());
+    }
+    
+    public void stop(){
+        move(0,0,0);
     }
     
     public void move(){

@@ -6,40 +6,27 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
-import edu.wpi.first.wpilibj.templates.util.Vector;
 
 /**
  *
- * @author Arturo
+ * @author Michael
  */
-public class CrabCommand extends CommandBase {
-    Xbox controls = oi.getXbox();
-    public CrabCommand() {
+public class SwerveRobocentricCommand extends CommandBase {
+    
+    public SwerveRobocentricCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(driveCrab);
+        // eg. requires(chassis);
+        requires(driveSwerveRobocentric);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveCrab.stop();
+        driveSwerveRobocentric.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double x = controls.GetLeftX();
-        double y = controls.GetLeftY();
-        if(x== 0||y ==0)
-        {
-        Vector vec = new Vector(x,y);
-        double angle = vec.getAngle();
-        double speed = vec.getMagnitude();
-        driveCrab.rotate(angle, 1, 3); //temporary code to rotatet the wheels
-        driveCrab.setSpeed(speed, 1); //temporary code to move the wheels at that speed
-        }
-        else if(controls.GetBValue()==true)
-        {
-            driveCrab.stop();
-        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -49,11 +36,12 @@ public class CrabCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        driveCrab.stop();
+        driveSwerveRobocentric.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        driveSwerveRobocentric.stop();
     }
 }

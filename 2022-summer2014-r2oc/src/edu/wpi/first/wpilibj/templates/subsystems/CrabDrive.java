@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
@@ -17,17 +18,19 @@ import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
 public class CrabDrive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-Talon talon[];
-Encoder encodes[];
+Jaguar[] turnMotors;
+Jaguar[] driveMotors;
+Encoder[] turnEncoders;
 /*
 Creates the crabDrive
 @param talPorts the list of ports for all the talons
 @param encoder the list of ports for encoders
 */
-    public CrabDrive(int[] talPorts, int[] encoder)
+    public CrabDrive(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[])
     {
-        talon = new Talon[talPorts.length];
-        encodes = new Encoder[encoder.length];
+        this.turnMotors = turnMotors;
+        this.driveMotors = driveMotors;
+        this.turnEncoders = turnEncoders;
         //TODO setup up ports to the correct talons/encoder
     }
     public void initDefaultCommand() {
@@ -41,16 +44,16 @@ Creates the crabDrive
     */
     	public void setSpeed(double speed,int index)
         {
-        talon[index].set(limitSpeed(speed));
+        turnMotors[index].set(limitSpeed(speed));
         }
         /*
         *Stops all the wheels 
         */
         public void stop()
         {
-            for(int x = 0; x<talon.length;x++)
+            for(int x = 0; x<turnMotors.length;x++)
             {
-            talon[x].set(0);
+            turnMotors[x].set(0);
             }
         }
         /*
@@ -61,9 +64,9 @@ Creates the crabDrive
         */
         public void rotate(double angle, int talIndex, int encodeIndex)
         {
-            if(getDegre(encodes[encodeIndex].get())< angle) talon[talIndex].set(limitSpeed(3)); //not how to move it at an angle
-            else if(getDegre(encodes[encodeIndex].get())> angle) talon[talIndex].set(limitSpeed(-3)); //fix this stuff
-            else{talon[talIndex].set(0); }
+            if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(3)); //not how to move it at an angle
+            else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(-3)); //fix this stuff
+            else{turnMotors[talIndex].set(0); }
         }
         /*
         *Limits the speed input

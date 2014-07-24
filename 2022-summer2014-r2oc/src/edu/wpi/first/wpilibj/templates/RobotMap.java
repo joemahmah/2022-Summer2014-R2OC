@@ -1,5 +1,8 @@
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Jaguar;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -27,4 +30,8 @@ public class RobotMap {
     public static final double wheelTurnSpeed = .1;
     public static final double movePercentage = .7;
     public static final double turnPercentage = .3;
+    
+    public static final Jaguar turnMotors[] = {};
+    public static final Jaguar driveMotors[] = {};
+    public static final Encoder turnEncoders[] = {};
 }
