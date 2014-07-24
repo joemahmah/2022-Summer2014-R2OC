@@ -41,7 +41,7 @@ public class genericBasicSwerve extends Subsystem {
     }
     
     public void move(){
-        finalVects = Vector.add(moveVect, rotVect);
+        finalVects = Vector.add(moveVect, rotVect, RobotMap.movePercentage, RobotMap.turnPercentage);
         for(int i=0; i<4; i++){
             turnTo(i,finalVects[i].getAngle());
             driveMotors[i].set(finalVects[i].getMagnitude());
@@ -51,7 +51,7 @@ public class genericBasicSwerve extends Subsystem {
     public void move(double x, double y, double pow){
         calcMoveVect(x, y);
         calcRotateVect(pow);
-        finalVects = Vector.add(moveVect, rotVect);
+        finalVects = Vector.add(moveVect, rotVect, RobotMap.movePercentage, RobotMap.turnPercentage);
         for(int i=0; i<4; i++){
             turnTo(i,finalVects[i].getAngle());
             driveMotors[i].set(finalVects[i].getMagnitude());
@@ -64,15 +64,15 @@ public class genericBasicSwerve extends Subsystem {
     
     public void calcRotateVect(double pow){
         if(pow < 0){
-            rotVect[0] = new Vector(0, Math.abs(pow));
-            rotVect[1] = new Vector(pow, Math.abs(pow));
-            rotVect[2] = new Vector(0, Math.abs(pow));
-            rotVect[3] = new Vector(-pow, Math.abs(pow));
+            rotVect[0] = new Vector(1, 1);
+            rotVect[1] = new Vector(1, -1);
+            rotVect[2] = new Vector(-1, -1);
+            rotVect[3] = new Vector(-1, 1);
         } else if(pow > 0){
-            rotVect[0] = new Vector(pow, Math.abs(pow));
-            rotVect[1] = new Vector(0, Math.abs(pow));
-            rotVect[2] = new Vector(-pow, Math.abs(pow));
-            rotVect[3] = new Vector(0, Math.abs(pow));
+            rotVect[0] = new Vector(-1, -1);
+            rotVect[1] = new Vector(-1, 1);
+            rotVect[2] = new Vector(1, 1);
+            rotVect[3] = new Vector(1, -1);
         } else{
             for(int i=0; i<4; i++){
                 rotVect[i] = new Vector(0, 0);

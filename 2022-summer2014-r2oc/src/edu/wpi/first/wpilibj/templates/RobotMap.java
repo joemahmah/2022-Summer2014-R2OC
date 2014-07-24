@@ -25,4 +25,6 @@ public class RobotMap {
     // public static final int rangefinderModule = 1;
     
     public static final double wheelTurnSpeed = .1;
+    public static final double movePercentage = .7;
+    public static final double turnPercentage = .3;
 }

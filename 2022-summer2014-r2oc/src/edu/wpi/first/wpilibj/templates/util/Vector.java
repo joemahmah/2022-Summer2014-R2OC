@@ -48,10 +48,22 @@ public class Vector {
         return new Vector(a.getX() + b.getX(), a.getY() + b.getY());
     }
     
+    public static Vector add(Vector a, Vector b, double aPer, double bPer){
+        return new Vector(a.getX() * aPer + b.getX() * bPer, a.getY() * aPer + b.getY() * bPer);
+    }
+    
     public static Vector[] add(Vector a, Vector b[]){
         Vector vects[] = new Vector[b.length];
         for(int i=0; i<b.length; i++){
             vects[i] = add(a,b[i]);
+        }
+        return vects;
+    }
+    
+    public static Vector[] add(Vector a, Vector b[], double aPer, double bPer){
+        Vector vects[] = new Vector[b.length];
+        for(int i=0; i<b.length; i++){
+            vects[i] = add(a, b[i], aPer, bPer);
         }
         return vects;
     }
