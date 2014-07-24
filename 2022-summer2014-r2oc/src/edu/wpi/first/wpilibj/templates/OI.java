@@ -1,6 +1,9 @@
 
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.ChangeDriveCommand;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 
@@ -18,11 +21,17 @@ public class OI {
      private final Xbox xbawks;
     private final Attack3 attack;
     
+    private int drive;
+    
     public OI()
     {
         xbawks = new Xbox(1); //change posrts
         attack = new Attack3(2); // change port
+        drive = RobotMap.CRAB_DRIVE;
         
+        Button changeDriveButton = xbawks.GetAButton();
+        
+        changeDriveButton.whenPressed(new ChangeDriveCommand());
         
             }
     public Xbox getXbox()
@@ -33,6 +42,19 @@ public class OI {
     {
         return attack;
     }
+    
+    public int getDrive(){
+        return drive;
+    }
+    
+    public void changeDrive(){
+        if(drive == RobotMap.SWERVE_DRIVE_FIELD){
+            drive = RobotMap.CRAB_DRIVE;
+        } else{
+            drive++;
+        }
+    }
+    
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
     // you want to build a customized operator interface.
@@ -50,9 +72,13 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
+    
+    
     // Run the command while the button is being held down and interrupt it once
     // the button is released.
     // button.whileHeld(new ExampleCommand());
+    
+    
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.

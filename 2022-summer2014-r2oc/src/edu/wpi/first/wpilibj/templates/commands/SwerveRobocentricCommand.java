@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 import edu.wpi.first.wpilibj.templates.util.MathUtils;
 
@@ -22,11 +23,11 @@ public class SwerveRobocentricCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveSwerveRobocentric.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if(oi.getDrive() == RobotMap.SWERVE_DRIVE_ROBO){
         double leftX = MathUtils.limit(oi.getXbox().GetLeftX(), .1, 1, 0, 1);
         double rightX = MathUtils.limit(oi.getXbox().GetRightX(), .1, 1, 0, 1);
         double leftY = MathUtils.limit(oi.getXbox().GetLeftY(), .1, 1, 0, 1);
@@ -45,7 +46,7 @@ public class SwerveRobocentricCommand extends CommandBase {
         }
         
         driveSwerveRobocentric.move(leftX * speedModifier, leftY * speedModifier, rightX * speedModifier);
-        
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
