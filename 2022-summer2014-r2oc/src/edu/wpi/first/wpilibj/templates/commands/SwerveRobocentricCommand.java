@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
+import edu.wpi.first.wpilibj.templates.util.MathUtils;
 
 /**
  *
@@ -26,6 +27,24 @@ public class SwerveRobocentricCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        double leftX = MathUtils.limit(oi.getXbox().GetLeftX(), .1, 1, 0, 1);
+        double rightX = MathUtils.limit(oi.getXbox().GetRightX(), .1, 1, 0, 1);
+        double leftY = MathUtils.limit(oi.getXbox().GetLeftY(), .1, 1, 0, 1);
+        double rightY = MathUtils.limit(oi.getXbox().GetRightY(), .1, 1, 0, 1);
+        
+        double speedModifier = .75;
+        
+        if(oi.getXbox().GetLeftBumperValue()){ //turtle
+            if(oi.getXbox().GetStartButton().get()){ //super turtle
+                speedModifier = .25;
+            } else{
+                speedModifier = .5;
+            }
+        } else if(oi.getXbox().GetRightBumperValue()){ //turbo
+            speedModifier = 1;
+        }
+        
+        driveSwerveRobocentric.move(leftX * speedModifier, leftY * speedModifier, rightX * speedModifier);
         
     }
 
