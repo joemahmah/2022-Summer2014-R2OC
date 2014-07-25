@@ -33,7 +33,7 @@ public class Shooter extends PIDSubsystem {
         releaseSolenoid = new DoubleSolenoid(solenoidPort1,solenoidPort2);
         springPullTalon = new Talon(pullBackPort);
         springPullEncoder = new Encoder(encoderPortA, encoderPortB, true, EncodingType.k2X);
-        springPullEncoder.setDistancePerPulse(25/750);
+        springPullEncoder.setDistancePerPulse(25.0/750.0);
         springPullEncoder.start();
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system

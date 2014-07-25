@@ -34,6 +34,11 @@ public class SwerveRobocentricSubsystem extends Subsystem {
         this.turnMotors = turnMotors;
         this.driveMotors = driveMotors;
         this.turnEncoders = turnEncoders;
+        
+        for(int i=0; i<turnEncoders.length; i++){
+            turnEncoders[i].setDistancePerPulse(25.0/750.0);
+            turnEncoders[i].start();
+        }
     }
     
     public void initDefaultCommand() {
