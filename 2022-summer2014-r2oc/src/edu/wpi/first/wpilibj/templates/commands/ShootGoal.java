@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 /**
  *
  * @author Vimig;
+ * @author Michael Hrcek
  */
 
 
@@ -32,47 +33,34 @@ public class ShootGoal extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        fireButton = attack.GetButton(2);
-        trussShotButton = attack.GetButton(3);
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         
-        if(attack.getTrigger() == true){
-        if(pickUp.isPickupDown() == false)
-        {
-            pickUp.moveSolenoid();
-        }
-           shooter.setSetpoint(farPullDistance);
-        }
-        
-        if(fireButton.get() == true){
-            if(pickUp.isPickupDown() == false)
-        {
-            pickUp.moveSolenoid();
-        }
-           shooter.setSetpoint(shortPullDistance);
+        if(attack.GetButton(2).get()){
+            shooter.releaseShooter();
+            shooter.pull();
+        } else{
+            shooter.stop();
+            shooter.lockShooter();
         }
         
-        if(trussShotButton.get() == true)
-        {
-            if(pickUp.isPickupDown() == false)
-        {
-            pickUp.moveSolenoid();
-        }
-           shooter.setSetpoint(shortPullDistance);
+        if(attack.getTrigger() == true && pickUp.isPickupDown()){
+            shooter.releaseShooter();
         }
         
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(shooter.getSetpoint() - shooter.getPosition()) < 0.5);
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shooter.releaseShooter();
+        shooter.stop();
+        shooter.lockShooter();
     }
 
     // Called when another command which requires one or more of the same

@@ -12,8 +12,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.templates.commands.auto.Game1;
+import edu.wpi.first.wpilibj.templates.commands.auto.Game2;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +29,7 @@ import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 public class RobotTemplate extends IterativeRobot {
 
     Command autonomousCommand;
+    SendableChooser autoChoice;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -32,7 +37,10 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        autoChoice = new SendableChooser();
+        autoChoice.addDefault("Move", new Game1());
+        autoChoice.addObject("Move and Shoot", new Game2());
+        SmartDashboard.putData("Auto Mode:", autoChoice);
 
         // Initialize all subsystems
         CommandBase.init();
@@ -40,6 +48,7 @@ public class RobotTemplate extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+        autonomousCommand = (Command) autoChoice.getSelected();
         autonomousCommand.start();
     }
 

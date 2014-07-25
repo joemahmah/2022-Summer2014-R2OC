@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.templates.util.Vector;
 
 /**
  *
- * @author Michael
+ * @author Michael Hrcek
  */
 public class SwerveRobocentricSubsystem extends Subsystem {
     // Put methods for controlling this subsystem

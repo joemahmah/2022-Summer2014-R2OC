@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.templates.commands.TankCommand;
 
 /**
  *
- * @author Michael
+ * @author Michael Hrcek
  */
 public class TankSubsystem extends Subsystem {
     // Put methods for controlling this subsystem

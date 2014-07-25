@@ -21,7 +21,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
      public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[1]);
      public static CrabDrive driveCrab = new CrabDrive(RobotMap.turnEncoders, RobotMap.turnMotors, RobotMap.driveMotors);
-     public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor, RobotMap.shooterEncoder1, RobotMap.shooterEncoder2);
+     public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor);
      public static SwerveRobocentricSubsystem driveSwerveRobocentric = new SwerveRobocentricSubsystem(RobotMap.turnEncoders, RobotMap.turnMotors, RobotMap.driveMotors);
      public static TankSubsystem tank = new TankSubsystem(RobotMap.driveMotors);
      
