@@ -51,7 +51,7 @@ public class OI {
     }
     
     public void changeDrive(){
-        if(drive == RobotMap.SWERVE_DRIVE_FIELD){
+        if(drive == RobotMap.ARCADE_DRIVE){
             drive = RobotMap.CRAB_DRIVE;
         } else{
             drive++;
@@ -65,6 +65,10 @@ public class OI {
             temp = "Robocentric Swerve";
         } else if(drive == RobotMap.SWERVE_DRIVE_FIELD){
             temp = "Fieldcentric Swerve";
+        } else if(drive == RobotMap.TANK_DRIVE){
+            temp = "Tank";
+        } else if(drive == RobotMap.ARCADE_DRIVE){
+            temp = "Arcade";
         } else{
             temp = "ERROR!";
         }

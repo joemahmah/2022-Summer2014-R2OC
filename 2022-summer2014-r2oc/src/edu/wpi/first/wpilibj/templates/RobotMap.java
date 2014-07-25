@@ -24,7 +24,7 @@ public class RobotMap {
      public static final int shooterEncoder1 = 3;
      public static final int shooterEncoder2 = 4;
      
-     public static final int CRAB_DRIVE = 1, SWERVE_DRIVE_ROBO = 2, SWERVE_DRIVE_FIELD = 3;
+     public static final int CRAB_DRIVE = 1, SWERVE_DRIVE_ROBO = 2, SWERVE_DRIVE_FIELD = 3, TANK_DRIVE = 4, ARCADE_DRIVE = 5;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
