@@ -3,6 +3,7 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.ChangeDriveCommand;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
@@ -29,6 +30,8 @@ public class OI {
         attack = new Attack3(2); // change port
         drive = RobotMap.CRAB_DRIVE;
         
+        SmartDashboard.putString("Current Drive: ", "Crab");
+        
         Button changeDriveButton = xbawks.GetAButton();
         
         changeDriveButton.whenPressed(new ChangeDriveCommand());
@@ -53,6 +56,20 @@ public class OI {
         } else{
             drive++;
         }
+        
+        String temp;
+        
+        if(drive == RobotMap.CRAB_DRIVE){
+            temp = "Crab";
+        } else if(drive == RobotMap.SWERVE_DRIVE_ROBO){
+            temp = "Robocentric Swerve";
+        } else if(drive == RobotMap.SWERVE_DRIVE_FIELD){
+            temp = "Fieldcentric Swerve";
+        } else{
+            temp = "ERROR!";
+        }
+        
+        SmartDashboard.putString("Current Drive: ", temp);
     }
     
     // Another type of button you can create is a DigitalIOButton, which is

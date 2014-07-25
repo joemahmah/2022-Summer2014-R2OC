@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 import edu.wpi.first.wpilibj.templates.util.MathUtils;
@@ -38,12 +39,22 @@ public class SwerveRobocentricCommand extends CommandBase {
         if(oi.getXbox().GetLeftBumperValue()){ //turtle
             if(oi.getXbox().GetStartButton().get()){ //super turtle
                 speedModifier = .25;
+                SmartDashboard.putString("Speed", "Super Turtle");
             } else{
                 speedModifier = .5;
+                SmartDashboard.putString("Speed", "Turtle");
             }
         } else if(oi.getXbox().GetRightBumperValue()){ //turbo
             speedModifier = 1;
+            SmartDashboard.putString("Speed", "Turbo");
+        } else{
+            SmartDashboard.putString("Speed", "Normal");
         }
+        
+        SmartDashboard.putString("LeftX", "" + leftX);
+        SmartDashboard.putString("LeftY", "" + leftY);
+        SmartDashboard.putString("RightX", "" + rightX);
+        SmartDashboard.putString("RightY", "" + rightY);
         
         driveSwerveRobocentric.move(leftX * speedModifier, leftY * speedModifier, rightX * speedModifier);
         }
