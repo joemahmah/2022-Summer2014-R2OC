@@ -74,5 +74,6 @@ public class SwerveRobocentricCommand extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
         driveSwerveRobocentric.stop();
+        SmartDashboard.putString("Shitter2", "Swerve got fucked yo.");
     }
 }

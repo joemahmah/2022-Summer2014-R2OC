@@ -4,7 +4,6 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.ChangeDriveCommand;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 
@@ -33,10 +32,7 @@ public class OI {
         SmartDashboard.putString("Current Drive: ", "Tank");
         SmartDashboard.putString("This drive:", getDrive() + "");
         
-        Button changeDriveButton = xbawks.GetAButton();
-        
-        changeDriveButton.whenPressed(new ChangeDriveCommand());
-        
+                
             }
     public Xbox getXbox()
     {

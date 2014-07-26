@@ -74,5 +74,7 @@ public class TankCommand extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        tank.stop();
+        SmartDashboard.putString("Shitter1", "Tank got fucked yo.");
     }
 }

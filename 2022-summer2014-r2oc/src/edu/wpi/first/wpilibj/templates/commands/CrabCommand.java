@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 import edu.wpi.first.wpilibj.templates.util.Vector;
@@ -58,5 +59,7 @@ public class CrabCommand extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        driveCrab.stop();
+        SmartDashboard.putString("Shitter3", "Crab got fucked yo.");
     }
 }
