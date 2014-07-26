@@ -29,20 +29,40 @@ public class CrabCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(oi.getDrive() == RobotMap.CRAB_DRIVE){
-        double x = oi.getXbox().GetLeftX();
-        double y = oi.getXbox().GetLeftY();
-        if(x== 0||y ==0)
-        {
-        Vector vec = new Vector(x,y);
-        double angle = vec.getAngle();
-        double speed = vec.getMagnitude();
-        driveCrab.rotate(angle, 1, 3); //temporary code to rotatet the wheels
-        driveCrab.setSpeed(speed, 1); //temporary code to move the wheels at that speed
-        }
-        else if(oi.getXbox().GetBValue()==true)
+            
+            double magnitude = oi.getXbox().GetLeftMagnitude();
+            double angle = oi.getXbox().GetLeftAngle(false);
+            
+            driveCrab.rotate(angle, 0, 0);
+            driveCrab.rotate(angle, 1, 1);
+            driveCrab.rotate(angle, 2, 2);
+            driveCrab.rotate(angle, 3, 3);
+            
+            driveCrab.setSpeed(magnitude, 0);
+            driveCrab.setSpeed(magnitude, 1);
+            driveCrab.setSpeed(magnitude, 2);
+            driveCrab.setSpeed(magnitude, 3);
+//        double x = oi.getXbox().GetLeftX();
+//        double y = oi.getXbox().GetLeftY();
+//        if(x== 0||y ==0)
+//        {
+//            Vector vec = new Vector(x,y);
+//            double angle = vec.getAngle();
+//            double speed = vec.getMagnitude();
+//            driveCrab.rotate(angle, 1, 3); //temporary code to rotatet the wheels
+//            driveCrab.setSpeed(speed, 1); //temporary code to move the wheels at that speed
+//        }
+        if((oi.getXbox().GetBValue())==true)
         {
             driveCrab.stop();
         }
+        
+            SmartDashboard.putString("Back Right Encoder", "" + RobotMap.turnEncoders[0].get());
+            SmartDashboard.putString("Back Left Encoder", "" + RobotMap.turnEncoders[1].get());
+            SmartDashboard.putString("Front Right Encoder", "" + RobotMap.turnEncoders[3].get());
+            SmartDashboard.putString("Front Left Encoder", "" + RobotMap.turnEncoders[2].get());
+            
+            
         }
     }
 

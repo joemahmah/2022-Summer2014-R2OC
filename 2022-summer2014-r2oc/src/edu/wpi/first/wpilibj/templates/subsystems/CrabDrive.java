@@ -74,7 +74,7 @@ Creates the crabDrive
         */
         public double limitSpeed(double speed)
         {
-            double max = 12; double min = 1; // change these speeds
+            double max = 1; double min = -1; // change these speeds
             double limit;
             if(speed>max) limit = max;
             else if(speed<min) limit = min;
@@ -87,6 +87,6 @@ Creates the crabDrive
         */
         public double getDegre(double count)
         {
-            return count/250*360;
+            return (count/250)*360;
         }
 }
