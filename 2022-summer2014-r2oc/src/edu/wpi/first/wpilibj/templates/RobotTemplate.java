@@ -28,28 +28,20 @@ import edu.wpi.first.wpilibj.templates.commands.auto.Game2;
  */
 public class RobotTemplate extends IterativeRobot {
 
-    Command autonomousCommand;
-    SendableChooser autoChoice;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-        // instantiate the command used for the autonomous period
-        autoChoice = new SendableChooser();
-        autoChoice.addDefault("Move", new Game1());
-        autoChoice.addObject("Move and Shoot", new Game2());
-        SmartDashboard.putData("Auto Mode:", autoChoice);
+        
 
         // Initialize all subsystems
         CommandBase.init();
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        autonomousCommand = (Command) autoChoice.getSelected();
-        autonomousCommand.start();
+        // schedule the autonomous command (e
     }
 
     /**
@@ -64,7 +56,6 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
     }
 
     /**
