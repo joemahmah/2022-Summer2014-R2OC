@@ -29,7 +29,7 @@ public class OI {
         attack = new Attack3(1); // change port
         drive = RobotMap.TANK_DRIVE;
         
-        SmartDashboard.putString("Current Drive: ", "Tank");
+        SmartDashboard.putString("Current Drive: ", "Swerve");
         SmartDashboard.putString("This drive:", getDrive() + "");
         
                 
