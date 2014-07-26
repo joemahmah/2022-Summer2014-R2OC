@@ -26,7 +26,7 @@ Talon t1;
 */
     public PickUpSystem(int[] solenoidPort, int rollerPort)
     {
-    sole = new DoubleSolenoid(solenoidPort[1],solenoidPort[2]);
+    sole = new DoubleSolenoid(solenoidPort[0],solenoidPort[1]);
     t1 = new Talon(rollerPort);
     }
 

@@ -26,11 +26,12 @@ public class OI {
     
     public OI()
     {
-        xbawks = new Xbox(1); //change posrts
-        attack = new Attack3(2); // change port
-        drive = RobotMap.CRAB_DRIVE;
+        xbawks = new Xbox(3); //change posrts
+        attack = new Attack3(1); // change port
+        drive = RobotMap.TANK_DRIVE;
         
-        SmartDashboard.putString("Current Drive: ", "Crab");
+        SmartDashboard.putString("Current Drive: ", "Tank");
+        SmartDashboard.putString("This drive:", getDrive() + "");
         
         Button changeDriveButton = xbawks.GetAButton();
         
