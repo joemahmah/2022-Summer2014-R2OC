@@ -31,17 +31,24 @@ public class CrabCommand extends CommandBase {
         if(oi.getDrive() == RobotMap.CRAB_DRIVE){
             
             double magnitude = oi.getXbox().GetLeftMagnitude();
-            double angle = oi.getXbox().GetLeftAngle(false);
+            double angle = oi.getXbox().GetRightAngle(false);
+            angle = angle * (180/Math.PI);
+            
+            SmartDashboard.putString("Angle From Joy", "" + angle);
             
             driveCrab.rotate(angle, 0, 0);
             driveCrab.rotate(angle, 1, 1);
             driveCrab.rotate(angle, 2, 2);
             driveCrab.rotate(angle, 3, 3);
             
-            driveCrab.setSpeed(magnitude, 0);
-            driveCrab.setSpeed(magnitude, 1);
-            driveCrab.setSpeed(magnitude, 2);
-            driveCrab.setSpeed(magnitude, 3);
+            driveCrab.setMoveSpeed(magnitude, 0);
+            driveCrab.setMoveSpeed(magnitude, 1);
+            driveCrab.setMoveSpeed(magnitude, 2);
+            driveCrab.setMoveSpeed(magnitude, 3);
+            
+            
+            
+            
 //        double x = oi.getXbox().GetLeftX();
 //        double y = oi.getXbox().GetLeftY();
 //        if(x== 0||y ==0)
@@ -55,12 +62,19 @@ public class CrabCommand extends CommandBase {
         if((oi.getXbox().GetBValue())==true)
         {
             driveCrab.stop();
+            
+            
         }
+            SmartDashboard.putString("Back Right Encoder1", "" + RobotMap.turnEncoders[0].get());
+            SmartDashboard.putString("Back Left Encoder1", "" + RobotMap.turnEncoders[1].get());
+            SmartDashboard.putString("Front Right Encoder1", "" + RobotMap.turnEncoders[3].get());
+            SmartDashboard.putString("Front Left Encoder1", "" + RobotMap.turnEncoders[2].get());
+            
         
-            SmartDashboard.putString("Back Right Encoder", "" + RobotMap.turnEncoders[0].get());
-            SmartDashboard.putString("Back Left Encoder", "" + RobotMap.turnEncoders[1].get());
-            SmartDashboard.putString("Front Right Encoder", "" + RobotMap.turnEncoders[3].get());
-            SmartDashboard.putString("Front Left Encoder", "" + RobotMap.turnEncoders[2].get());
+            SmartDashboard.putString("Back Right Encoder", "" + driveCrab.getDegree(RobotMap.turnEncoders[0].get()));
+            SmartDashboard.putString("Back Left Encoder", "" + driveCrab.getDegree(RobotMap.turnEncoders[1].get()));
+            SmartDashboard.putString("Front Right Encoder", "" + driveCrab.getDegree(RobotMap.turnEncoders[3].get()));
+            SmartDashboard.putString("Front Left Encoder", "" + driveCrab.getDegree(RobotMap.turnEncoders[2].get()));
             
             
         }

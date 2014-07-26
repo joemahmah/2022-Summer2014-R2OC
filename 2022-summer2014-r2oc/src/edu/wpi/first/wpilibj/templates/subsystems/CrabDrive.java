@@ -7,8 +7,8 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
 
 /**
@@ -21,6 +21,8 @@ public class CrabDrive extends Subsystem {
 Jaguar[] turnMotors;
 Jaguar[] driveMotors;
 Encoder[] turnEncoders;
+
+int DEAD_BAND = 10;
 /*
 Creates the crabDrive
 @param talPorts the list of ports for all the talons
@@ -42,9 +44,10 @@ Creates the crabDrive
     *@param speed the speed you want it to go
     *@param index the index of the talon for the wheel
     */
-    	public void setSpeed(double speed,int index)
+    	
+        public void setMoveSpeed(double speed, int index)
         {
-        turnMotors[index].set(limitSpeed(speed));
+            driveMotors[index].set((speed));
         }
         /*
         *Stops all the wheels 
@@ -55,7 +58,10 @@ Creates the crabDrive
             {
             turnMotors[x].set(0);
             }
-        }
+            for(int x = 0; x<driveMotors.length;x++)
+            {
+            driveMotors[x].set(0);
+            }        }
         /*
         *Rotates the swerve wheel to a specific angle
         *@param angle the angle at which you want it to turn
@@ -64,29 +70,30 @@ Creates the crabDrive
         */
         public void rotate(double angle, int talIndex, int encodeIndex)
         {
-            if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(3)); //not how to move it at an angle
-            else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(-3)); //fix this stuff
-            else{turnMotors[talIndex].set(0); }
+            if(Math.abs(getDegree(turnEncoders[encodeIndex].get())- angle) < DEAD_BAND){
+                
+            if(getDegree(turnEncoders[encodeIndex].get())> angle) 
+            {
+                turnMotors[talIndex].set(-0.4);
+                SmartDashboard.putString("turn Motors", "Turn!");
+            } //not how to move it at an angle
+            else if(getDegree(turnEncoders[encodeIndex].get())< angle) 
+            {
+                turnMotors[talIndex].set(0.4);
+                SmartDashboard.putString("turn Back Motors", "Back Turn!");
+            } //fix this stuff
+            else{turnMotors[talIndex].set(0); 
+            }
+            }
         }
-        /*
-        *Limits the speed input
-        *@param speed the speed that you wish the wheel to move
-        */
-        public double limitSpeed(double speed)
-        {
-            double max = 1; double min = -1; // change these speeds
-            double limit;
-            if(speed>max) limit = max;
-            else if(speed<min) limit = min;
-            else{limit = speed; }
-            return limit;
-        }
+        
         /*
         *gives the degrees based on the the encoder's count at the moment
         *@param count the count
         */
-        public double getDegre(double count)
+        public double getDegree(double count)
         {
-            return (count/250)*360;
+            return count * (360/1395);
+            
         }
 }

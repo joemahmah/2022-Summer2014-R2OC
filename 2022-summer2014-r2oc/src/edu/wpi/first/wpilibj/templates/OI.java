@@ -29,8 +29,8 @@ public class OI {
         attack = new Attack3(1); // change port
         drive = RobotMap.CRAB_DRIVE;
         
-        SmartDashboard.putString("Current Drive: ", "Swerve");
-        SmartDashboard.putString("This drive:", getDrive() + "");
+        //SmartDashboard.putString("Current Drive: ", "Swerve");
+        //SmartDashboard.putString("This drive:", getDrive() + "");
         
                 
             }
