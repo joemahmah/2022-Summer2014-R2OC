@@ -27,7 +27,7 @@ public class OI {
     {
         xbawks = new Xbox(3); //change posrts
         attack = new Attack3(1); // change port
-        drive = RobotMap.TANK_DRIVE;
+        drive = RobotMap.CRAB_DRIVE;
         
         SmartDashboard.putString("Current Drive: ", "Swerve");
         SmartDashboard.putString("This drive:", getDrive() + "");
