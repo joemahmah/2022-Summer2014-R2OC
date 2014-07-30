@@ -13,10 +13,12 @@ package edu.wpi.first.wpilibj.templates.util;
 public class MathUtils {
     
     public static double limit(double num, double low, double high, double defaultLow, double defaultHigh){
-        if(num < low){
+        if(Math.abs(num) < low){
             return defaultLow;
-        } else if(num > high){
+        } else if(Math.abs(num) > high && num > 0){
             return defaultHigh;
+        } else if(Math.abs(num) > high && num < 0){
+            return (defaultHigh * -1);
         } else{
             return num;
         }
