@@ -1,9 +1,11 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.CompressorSubsystem;
+import edu.wpi.first.wpilibj.templates.subsystems.CrabDrive;
 import edu.wpi.first.wpilibj.templates.subsystems.PickUpSystem;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 import edu.wpi.first.wpilibj.templates.subsystems.TankSubsystem;
@@ -19,6 +21,7 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
      public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[0]);
+     public static CrabDrive driveCrab = new CrabDrive(RobotMap.turnEncoders,RobotMap.turnMotors, RobotMap.driveMotors);
      public static TankSubsystem tank = new TankSubsystem(RobotMap.driveMotors);
      public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor);
      public static CompressorSubsystem compress = new CompressorSubsystem(RobotMap.COMPRESSOR);
@@ -32,7 +35,9 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        //SmartDashboard.putData(pickUp);
+        SmartDashboard.putData(pickUp);
+        SmartDashboard.putData(driveCrab);
+        SmartDashboard.putData(shooter);
     }
 
     public CommandBase(String name) {

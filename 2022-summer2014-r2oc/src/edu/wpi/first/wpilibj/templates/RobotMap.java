@@ -17,7 +17,6 @@ public class RobotMap {
     // public static final int leftMotor = 1;
     // public static final int rightMotor = 2;
      public static final int[] soles = {3,4}; //TODO change this
-     public static final int talFR = 1;// change
      public static final int[] talons = {10}; // change this
      public static final int shooterSolenoid1 = 1;
      public static final int shooterSolenoid2 = 2;

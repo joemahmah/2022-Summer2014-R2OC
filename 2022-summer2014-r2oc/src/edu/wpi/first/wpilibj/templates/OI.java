@@ -1,8 +1,6 @@
 
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
@@ -19,13 +17,14 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
      private final Xbox xbawks;
-    private final Attack3 attack;
+    private final Attack3 attack, attack2;
     
     private int drive;
     
     public OI()
     {
         xbawks = new Xbox(3); //change posrts
+        attack2 = new Attack3(2);
         attack = new Attack3(1); // change port
         drive = RobotMap.TANK_DRIVE;
         
@@ -37,6 +36,10 @@ public class OI {
     public Xbox getXbox()
     {
         return xbawks;
+    }
+    public Attack3 getAttack2()
+    {
+        return attack2;
     }
     public Attack3 getAttack()
     {

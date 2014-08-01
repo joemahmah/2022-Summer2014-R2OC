@@ -5,7 +5,6 @@
  */
 
 package edu.wpi.first.wpilibj.templates.util;
-
 /**
  *
  * @author Michael
@@ -25,7 +24,7 @@ public class Vector {
     
     public void calculate(double x, double y){
         magnitude = Math.abs(Math.sqrt(x*x + y*y));
-        angle = com.sun.squawk.util.MathUtils.atan(y/x);
+        angle = com.sun.squawk.util.MathUtils.atan2(y,x);
     }
     
     public double getMagnitude(){

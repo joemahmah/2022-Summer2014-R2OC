@@ -8,6 +8,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.commands.BallCollector;
 
 /**
 *
@@ -32,7 +33,7 @@ Talon t1;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new BallCollector());
     }
     /*
 * Turns the solenoid on and off
@@ -58,5 +59,9 @@ Talon t1;
     public void moveTalon(double speed)
     {
     t1.set(speed);
+    }
+    public void stop()
+    {
+        t1.set(0);
     }
 }

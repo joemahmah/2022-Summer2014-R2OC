@@ -5,7 +5,9 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
+import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 
 /**
 *
@@ -13,6 +15,7 @@ import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 */
 public class BallCollector extends CommandBase {
     private final Attack3 attack = oi.getAttack();
+    private final Xbox xbawks = oi.getXbox();
     public BallCollector() {
         // Use requires() here to declare subsystem dependencies
         requires(pickUp);
@@ -24,9 +27,12 @@ public class BallCollector extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-         while(attack.GetX()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
-                while(attack.GetY()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
-                while(attack.GetZ() == 0){pickUp.moveTalon(0.5);}//TODO change this shit
+//                while(attack.GetX()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
+//                while(attack.GetY()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
+                if(attack.GetButton(1).get()==true){pickUp.moveTalon(1);}//TODO change this shit
+                else if(attack.GetButton(3).get()==true){pickUp.moveTalon(-1);}
+                else if(attack.GetButton(3).get()==false&&attack.GetButton(1).get()== false){pickUp.stop();}
+ 
     }
 
     // Make this return true when this Command no longer needs to run execute()

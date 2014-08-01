@@ -52,10 +52,10 @@ public class TankCommand extends CommandBase {
                 SmartDashboard.putString("Speed", "Normal");
             }
         
-            SmartDashboard.putString("LeftX", "NULL");
-            SmartDashboard.putString("LeftY", "" + leftY);
-            SmartDashboard.putString("RightX", "NULL");
-            SmartDashboard.putString("RightY", "" + rightY);
+//            SmartDashboard.putString("LeftX", "NULL");
+//            SmartDashboard.putString("LeftY", "" + leftY);
+//            SmartDashboard.putString("RightX", "NULL");
+//            SmartDashboard.putString("RightY", "" + rightY);
             
             tank.move(leftY * speedModifier, rightY * speedModifier);
         }

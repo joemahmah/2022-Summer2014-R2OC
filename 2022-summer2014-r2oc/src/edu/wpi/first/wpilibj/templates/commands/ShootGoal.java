@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 public class ShootGoal extends CommandBase {
 
     
-    private final Attack3 attack = oi.getAttack();
+    private final Attack3 attack = oi.getAttack2();
     private static final int farPullDistance = 24;
     private static final int shortPullDistance = 12;    
     
@@ -27,7 +27,6 @@ public class ShootGoal extends CommandBase {
     
     public ShootGoal() {
         // Use requires() here to declare subsystem dependencies
-        requires(pickUp);
         requires(shooter);
     }
 
@@ -39,17 +38,21 @@ public class ShootGoal extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         
-        if(attack.GetButton(2).get()){
-            shooter.releaseShooter();
+//        if(attack.GetButton(2).get()){
+//            shooter.releaseShooter();
+//            shooter.pull();
+//        }
+         if(attack.GetButton(3).get()==true)
+        {
             shooter.pull();
-        } else{
+        }
+        else{
             shooter.stop();
-            shooter.lockShooter();
         }
         
-        if(attack.getTrigger() == true && pickUp.isPickupDown()){
-            shooter.releaseShooter();
-        }
+//        if(attack.getTrigger() == true && pickUp.isPickupDown()){
+//            shooter.releaseShooter();
+//        }
         
     }
     // Make this return true when this Command no longer needs to run execute()
