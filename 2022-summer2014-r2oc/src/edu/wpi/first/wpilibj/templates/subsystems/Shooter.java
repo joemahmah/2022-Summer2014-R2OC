@@ -8,6 +8,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.ShootGoal;
 /**
  *
@@ -40,11 +41,13 @@ public class Shooter extends Subsystem {
     
     public void lockShooter(){
         releaseSolenoid.set(DoubleSolenoid.Value.kReverse);
+        SmartDashboard.putString("solLock ", releaseSolenoid.get()+"");
     }
     
     public void releaseShooter()
     {
         releaseSolenoid.set(DoubleSolenoid.Value.kForward);
+        SmartDashboard.putString("solRel ", releaseSolenoid.get()+"");
     }
     
     public void stop(){
