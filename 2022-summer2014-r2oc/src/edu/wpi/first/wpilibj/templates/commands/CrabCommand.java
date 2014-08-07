@@ -7,10 +7,11 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.util.Vector;
+import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 
 public class CrabCommand extends CommandBase {
-    
+    Xbox xbawks = oi.getXbox();
+    double lx,ly, rx,ry, lmag, rmag;
     public CrabCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(driveCrab);
@@ -24,23 +25,45 @@ public class CrabCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(oi.getDrive() == RobotMap.CRAB_DRIVE){
-        double x = oi.getXbox().GetLeftX();
-        double y = oi.getXbox().GetLeftY();
-        double magnitude = oi.getXbox().getMagnitude();
-            if(x== 0||y ==0)
+         lx = xbawks.GetLeftX();
+         ly = xbawks.GetLeftY();
+         rx = xbawks.GetRightX();
+         ry = xbawks.GetRightY();
+         
+         lmag = xbawks.GetLeftMagnitude();
+         rmag = xbawks.GetRightMagnitude();
+            if(lx< 0&&ly <0)
             {
-            Vector vec = new Vector(x,y);
-            double angle = vec.getAngle();
-            driveCrab.rotate(angle,0, 0, angle);
-            driveCrab.rotate(angle,1, 1, angle);
-            driveCrab.rotate(angle,2, 2, angle);
-            driveCrab.rotate(angle,3, 3, angle);
-            driveCrab.setSpeed(magnitude); //temporary code to move the wheels at that speed
+              driveCrab.setSpeed(-lmag);
+//            Vector vec = new Vector(x,y);
+//            double angle = vec.getAngle();
+//            driveCrab.rotate(angle,0, 0, angle);
+//            driveCrab.rotate(angle,1, 1, angle);
+//            driveCrab.rotate(angle,2, 2, angle);
+//            driveCrab.rotate(angle,3, 3, angle);
+//            driveCrab.setSpeed(magnitude); //temporary code to move the wheels at that speed
             }
-            else if(oi.getXbox().GetBValue()==true)
+            else 
+            {
+                driveCrab.setSpeed(lmag);
+            }
+            if(rx < 0 && ry <0)
+            {
+                driveCrab.turn(-rmag);
+            }
+            else
+            {
+                driveCrab.turn(rmag);
+            }
+            if(xbawks.GetBValue()==true)
             {
                 driveCrab.stop();
             }
+             if(xbawks.GetAValue()==true)
+            {
+                driveCrab.turn(1);
+            }
+            
         }
     }
 

@@ -7,7 +7,6 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
 
@@ -44,10 +43,10 @@ Creates the crabDrive
 */
      public void setSpeed(double speed)
         {
-        turnMotors[0].set(limitSpeed(speed));
-        turnMotors[1].set(limitSpeed(speed));
-        turnMotors[2].set(limitSpeed(speed));
-        turnMotors[3].set(limitSpeed(speed));
+        driveMotors[0].set(limitSpeed(speed));
+        driveMotors[1].set(limitSpeed(speed));
+        driveMotors[2].set(limitSpeed(speed));
+        driveMotors[3].set(limitSpeed(speed));
         }
         /*
 *Stops all the wheels
@@ -92,4 +91,16 @@ Creates the crabDrive
         {
             return count/250*360;
         }
+        
+        /*
+        Testing code to see if the wheels rotate
+        */
+        public void turn(double speed)
+        {
+            turnMotors[0].set(speed);
+            turnMotors[1].set(speed);
+            turnMotors[2].set(speed);
+            turnMotors[3].set(speed);
+        }
+        
 }

@@ -62,6 +62,6 @@ Talon t1;
     }
     public void stop()
     {
-        t1.set(0);
+        t1.set(0.1);
     }
 }
