@@ -6,7 +6,6 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.commands.ShootGoal;
@@ -19,14 +18,13 @@ import edu.wpi.first.wpilibj.templates.commands.ShootGoal;
 
 public class Shooter extends Subsystem {
 
-    Solenoid releaseSolenoid1, releaseSolenoid2;
+    DoubleSolenoid releaseSolenoid;
     Talon springPullTalon;
     
     // Initialize your subsystem here
     public Shooter(int solenoidPort1, int solenoidPort2 ,int pullBackPort) {
         
-        releaseSolenoid1 = new Solenoid(solenoidPort1);
-        releaseSolenoid2 = new Solenoid(solenoidPort2);
+        releaseSolenoid = new DoubleSolenoid(solenoidPort1,solenoidPort2);
         springPullTalon = new Talon(pullBackPort);
     }
     
@@ -37,18 +35,16 @@ public class Shooter extends Subsystem {
     }
     
     public void pull(){
-        springPullTalon.set(-0.35);
+        springPullTalon.set(-0.10);
     }
     
     public void lockShooter(){
-        releaseSolenoid1.set(true);
-        releaseSolenoid2.set(true);
+        releaseSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void releaseShooter()
     {
-        releaseSolenoid1.set(false);
-        releaseSolenoid2.set(false);
+        releaseSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     
     public void stop(){
