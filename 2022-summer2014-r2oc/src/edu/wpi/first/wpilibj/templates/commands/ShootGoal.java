@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 
@@ -18,12 +19,14 @@ import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 public class ShootGoal extends CommandBase {
 
     
-    private final Attack3 attack = oi.getAttack2();
+    private final Attack3 attack2 = oi.getAttack2();
     private static final int farPullDistance = 24;
     private static final int shortPullDistance = 12;    
     
     JoystickButton fireButton;
     JoystickButton trussShotButton;
+    
+    private static boolean isDown = false;
     
     public ShootGoal() {
         // Use requires() here to declare subsystem dependencies
@@ -42,13 +45,28 @@ public class ShootGoal extends CommandBase {
 //            shooter.releaseShooter();
 //            shooter.pull();
 //        }
-         if(attack.GetButton(3).get()==true)
+         if(attack2.GetButton(3).get()==true)
         {
             shooter.pull();
+            
         }
         else{
             shooter.stop();
+            
         }
+         if(attack2.getTrigger() == true)
+         {
+             if(isDown == false)
+        {
+        shooter.lockShooter();
+        isDown = true;
+        }
+        else
+        {
+        shooter.releaseShooter();
+        isDown = false;
+        }
+         }
         
 //        if(attack.getTrigger() == true && pickUp.isPickupDown()){
 //            shooter.releaseShooter();

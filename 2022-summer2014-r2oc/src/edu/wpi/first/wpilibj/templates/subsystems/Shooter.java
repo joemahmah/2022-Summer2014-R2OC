@@ -35,7 +35,7 @@ public class Shooter extends Subsystem {
     }
     
     public void pull(){
-        springPullTalon.set(.75);
+        springPullTalon.set(-0.10);
     }
     
     public void lockShooter(){
