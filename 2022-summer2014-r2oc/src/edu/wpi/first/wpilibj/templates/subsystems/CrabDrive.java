@@ -68,6 +68,7 @@ Creates the crabDrive
         public void rotate(double angle, int talIndex, int encodeIndex, double speed)
         {
             SmartDashboard.putString("Encoder " + encodeIndex, "" + turnEncoders[encodeIndex].get());
+            SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegre(turnEncoders[encodeIndex].get()));
             if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(speed)); //not how to move it at an angle
             else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(speed)); //fix this stuff
             else{turnMotors[talIndex].set(0); }
