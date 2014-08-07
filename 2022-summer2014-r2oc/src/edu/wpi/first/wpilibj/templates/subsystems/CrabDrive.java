@@ -8,6 +8,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
 
 /**
@@ -66,6 +67,7 @@ Creates the crabDrive
 */
         public void rotate(double angle, int talIndex, int encodeIndex, double speed)
         {
+            SmartDashboard.putString("Encoder " + encodeIndex, "" + turnEncoders[encodeIndex].get());
             if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(speed)); //not how to move it at an angle
             else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(speed)); //fix this stuff
             else{turnMotors[talIndex].set(0); }
@@ -89,7 +91,7 @@ Creates the crabDrive
 */
         public double getDegre(double count)
         {
-            return count/250*360;
+            return (count/250*360)%360;
         }
         
         /*
