@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.TankCommand;
 
 /**
@@ -20,6 +21,8 @@ public class TankSubsystem extends Subsystem {
     private Jaguar[] left, right;
     
     public TankSubsystem(Jaguar motors[]){
+        
+        SmartDashboard.putString("Begin Tank Drive", "");
         left = new Jaguar[2];
         right = new Jaguar[2];
         

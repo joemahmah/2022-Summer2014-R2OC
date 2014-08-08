@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.controllers.Attack3;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
 

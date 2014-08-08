@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.TankSubsystem;
 public abstract class CommandBase extends Command {
 
     public static OI oi;
+    
     // Create a single static instance of all of your subsystems
      public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[0]);
      public static CrabDrive driveCrab = new CrabDrive(RobotMap.turnEncoders,RobotMap.turnMotors, RobotMap.driveMotors);
@@ -38,6 +39,10 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(pickUp);
         SmartDashboard.putData(driveCrab);
         SmartDashboard.putData(shooter);
+        
+        for(int i=0; i<RobotMap.turnEncoders.length; i++){
+            RobotMap.turnEncoders[i].start();
+        }
     }
 
     public CommandBase(String name) {

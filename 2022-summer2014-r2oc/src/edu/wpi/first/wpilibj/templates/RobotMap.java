@@ -34,7 +34,8 @@ public class RobotMap {
     
     public static final Jaguar turnMotors[] = {new Jaguar(4),new Jaguar(5),new Jaguar(7),new Jaguar(2)};
     public static final Jaguar driveMotors[] = {new Jaguar(3),new Jaguar(6),new Jaguar(8),new Jaguar(1)};
-    public static final Encoder turnEncoders[] = {new Encoder(1, 2, true, CounterBase.EncodingType.k2X),new Encoder(3, 4, true, CounterBase.EncodingType.k2X),new Encoder(7, 8, true, CounterBase.EncodingType.k2X),new Encoder(5, 6, true, CounterBase.EncodingType.k2X)};
-
+    public static final Encoder turnEncoders[] = {new Encoder(1, 2,true,CounterBase.EncodingType.k2X),new Encoder(3, 4,true,CounterBase.EncodingType.k2X),new Encoder(7, 8,true,CounterBase.EncodingType.k2X),new Encoder(5, 6,true,CounterBase.EncodingType.k2X)};
+    
+    
     public static final Compressor COMPRESSOR = new Compressor(9,1);
 }

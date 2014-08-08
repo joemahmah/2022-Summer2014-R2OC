@@ -24,7 +24,7 @@ public class CrabCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(oi.getDrive() == RobotMap.CRAB_DRIVE){
+        //if(oi.getDrive() == RobotMap.CRAB_DRIVE){
          lx = xbawks.GetLeftX();
          ly = xbawks.GetLeftY();
          rx = xbawks.GetRightX();
@@ -32,39 +32,14 @@ public class CrabCommand extends CommandBase {
          
          lmag = xbawks.GetLeftMagnitude();
          rmag = xbawks.GetRightMagnitude();
-            if(lx< 0&&ly <0)
-            {
-              driveCrab.setSpeed(-lmag);
-//            Vector vec = new Vector(x,y);
-//            double angle = vec.getAngle();
-//            driveCrab.rotate(angle,0, 0, angle);
-//            driveCrab.rotate(angle,1, 1, angle);
-//            driveCrab.rotate(angle,2, 2, angle);
-//            driveCrab.rotate(angle,3, 3, angle);
-//            driveCrab.setSpeed(magnitude); //temporary code to move the wheels at that speed
-            }
-            else 
-            {
-                driveCrab.setSpeed(lmag);
-            }
-            if(rx < 0 && ry <0)
-            {
-                driveCrab.turn(-rmag);
-            }
-            else
-            {
-                driveCrab.turn(rmag);
-            }
-            if(xbawks.GetBValue()==true)
-            {
-                driveCrab.stop();
-            }
-             if(xbawks.GetAValue()==true)
-            {
-                driveCrab.turn(1);
-            }
-            
-        }
+         
+         driveCrab.rotate(xbawks.GetLeftAngle(true), 0, 0, .25);
+         driveCrab.rotate(xbawks.GetLeftAngle(true), 1, 1, .25);
+         driveCrab.rotate(xbawks.GetLeftAngle(true), 2, 2, .25);
+         driveCrab.rotate(xbawks.GetLeftAngle(true), 3, 3, .25);
+         
+         
+        //}
     }
 
     // Make this return true when this Command no longer needs to run execute()

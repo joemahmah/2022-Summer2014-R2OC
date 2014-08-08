@@ -28,6 +28,8 @@ Creates the crabDrive
 */
     public CrabDrive(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[])
     {
+        SmartDashboard.putString("Begin Crab Drive", "");
+        
         this.turnMotors = turnMotors; // FL (2), FR(3), BL (1), BR (0)
         this.driveMotors = driveMotors; // FL (2), FR (3), BL (1), BR (0)
         this.turnEncoders = turnEncoders; // FL (2), FR (3), BL (1), BR (0)
@@ -67,8 +69,8 @@ Creates the crabDrive
 */
         public void rotate(double angle, int talIndex, int encodeIndex, double speed)
         {
-            SmartDashboard.putString("Encoder " + encodeIndex, "" + turnEncoders[encodeIndex].get());
-            SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegre(turnEncoders[encodeIndex].get()));
+            SmartDashboard.putString("Encoder " + encodeIndex, "" + turnEncoders[encodeIndex].getRaw());
+            SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegre(turnEncoders[encodeIndex].getRaw()));
             if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(speed)); //not how to move it at an angle
             else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(speed)); //fix this stuff
             else{turnMotors[talIndex].set(0); }

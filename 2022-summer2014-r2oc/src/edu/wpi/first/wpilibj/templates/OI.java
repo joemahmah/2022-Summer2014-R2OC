@@ -30,7 +30,6 @@ public class OI {
         
         SmartDashboard.putString("This drive:", getDrive() + "");
         
-                
             }
     public Xbox getXbox()
     {
@@ -50,6 +49,8 @@ public class OI {
     }
     
     public void changeDrive(){
+         
+        SmartDashboard.putString("Test Change Drive beginning", "");
         if(drive == RobotMap.ARCADE_DRIVE){
             drive = RobotMap.CRAB_DRIVE;
         } else{
