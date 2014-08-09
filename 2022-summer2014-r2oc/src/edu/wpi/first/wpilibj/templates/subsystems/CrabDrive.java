@@ -71,23 +71,30 @@ Creates the crabDrive
         {
             SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegree(turnEncoders[encodeIndex].get()));
             int direction;
+            double speedMult;
             double current = getDegree(turnEncoders[encodeIndex].get());
-            
-            //double speedMult = limitSpeed(Math.abs(current - target)/5);
-            double speedMult = 1;
-            
-            if(current < (target - 3))
-            {
-               direction = 1;
+            speedMult = limitSpeed(Math.abs(current - target)/5);
+            if(Math.abs(current - target) < 6){
+              
+            speedMult = 0;  
             }
-            else
+            SmartDashboard.putString("Speed Multiplier", speedMult + "");
+            
+            double midpoint = (target + 180) % 360;
+            if(current < midpoint)
             {
                 direction = -1;
             }
-            turnMotors[talIndex].set(limitSpeed(direction*speed * speedMult));
-            SmartDashboard.putString("First", limitSpeed(direction*speed * speedMult) + "");
+            else
+            {
+                direction = 1;
+            }
+            if(Math.abs(current-target) > 6){
+                
+            turnMotors[talIndex].set(limitSpeed(direction*speed*speedMult));
             
-            if(Math.abs(current-target) < 3){
+            SmartDashboard.putString("First", limitSpeed(direction*speed*speedMult) + "");
+            
 //            if(current < target - 3){
 //                turnMotors[talIndex].set(limitSpeed(-speed * speedMult));
 //                SmartDashboard.putString("First", limitSpeed(speed * speedMult) + "");
@@ -100,8 +107,9 @@ Creates the crabDrive
 //                turnMotors[talIndex].set(0); 
 //                SmartDashboard.putString("We got fuck in the ass by a donkey...", limitSpeed(speed * speedMult) + "");
 //            }
+            }else{
             turnMotors[talIndex].set(0);
-            }            
+            }
         }
         /*
 *Limits the speed input
