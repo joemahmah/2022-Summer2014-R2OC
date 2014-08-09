@@ -54,19 +54,13 @@ public class ShootGoal extends CommandBase {
             shooter.stop();
             
         }
-         if(attack2.getTrigger() == true)
-         {
-             if(isDown == false)
-        {
-        shooter.lockShooter();
-        isDown = true;
+        if(attack2.getTrigger()){
+            shooter.releaseShooter();
         }
-        else
-        {
-        shooter.releaseShooter();
-        isDown = false;
+        
+        if(attack2.GetButton(5).get()){
+            shooter.lockShooter();
         }
-         }
         
 //        if(attack.getTrigger() == true && pickUp.isPickupDown()){
 //            shooter.releaseShooter();

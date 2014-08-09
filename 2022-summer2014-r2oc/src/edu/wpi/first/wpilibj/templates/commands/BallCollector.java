@@ -28,12 +28,24 @@ public class BallCollector extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//        pickUp.testCode();
 //                while(attack.GetX()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
 //                while(attack.GetY()== 0) {pickUp.moveSolenoid();}//TODO eventually change this to some button
-                if(attack.GetButton(1).get()==true){pickUp.moveTalon(1);}//TODO change this shit
-                else if(attack.GetButton(3).get()==true){pickUp.moveTalon(-1);}
-                else if(attack.GetButton(3).get()==false&&attack.GetButton(1).get()== false){pickUp.stop();}
-                if(attack.GetButton(5).get() == true){pickUp.moveSolenoid();}
+                if(attack.GetButton(1).get()==true){
+                    pickUp.moveTalon(1);
+                }else if(attack.GetButton(3).get()==true){
+                    pickUp.moveTalon(-1);
+                }else if(attack.GetButton(3).get()==false&&attack.GetButton(1).get()== false){
+                    pickUp.stop();
+                }
+                
+                if(attack.GetButton(5).get() == true){
+                    pickUp.moveOut();
+                }
+                
+                if(attack.GetButton(4).get() == true){
+                    pickUp.moveIn();
+                }
     }
 
     // Make this return true when this Command no longer needs to run execute()

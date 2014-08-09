@@ -5,9 +5,11 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.controllers.Xbox;
+import edu.wpi.first.wpilibj.templates.util.Vector;
 
 public class CrabCommand extends CommandBase {
     Xbox xbawks = oi.getXbox();
@@ -25,18 +27,36 @@ public class CrabCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         //if(oi.getDrive() == RobotMap.CRAB_DRIVE){
-         lx = xbawks.GetLeftX();
-         ly = xbawks.GetLeftY();
-         rx = xbawks.GetRightX();
-         ry = xbawks.GetRightY();
+//         double angle = xbawks.GetLeftX() * 180;
+//         double mag = xbawks.GetRightY();
          
-         lmag = xbawks.GetLeftMagnitude();
-         rmag = xbawks.GetRightMagnitude();
+//         if(angle < 0){
+//             angle = 360+angle;
+//         }
          
-         driveCrab.rotate(xbawks.GetLeftAngle(true), 0, 0, .25);
-         driveCrab.rotate(xbawks.GetLeftAngle(true), 1, 1, .25);
-         driveCrab.rotate(xbawks.GetLeftAngle(true), 2, 2, .25);
-         driveCrab.rotate(xbawks.GetLeftAngle(true), 3, 3, .25);
+        double ry = dead(xbawks.GetRightY(),1,.1);
+        double rx = dead(xbawks.GetRightX(),1,.1);
+        double speed = dead(xbawks.GetLeftY(),1,.1);
+        
+        double angleValue = MathUtils.atan2(ry, rx);
+        if(angleValue < 0){
+            angleValue = angleValue + (Math.PI*2);
+        }
+        
+        angleValue = angleValue * (180/Math.PI);
+        
+        double angle = angleValue;
+        
+        SmartDashboard.putString("Target Angle", angle + "");
+        
+        double multiply = SmartDashboard.getNumber("Multiplyer", 1);
+        
+         //driveCrab.rotate(angle, 0, 0, .35 * multiply);
+         //driveCrab.rotate(angle, 1, 1, .25 * multiply);
+         driveCrab.rotate(angle, 2, 2, .25 * multiply);
+         //driveCrab.rotate(angle, 3, 3, .25 * multiply);
+         
+         driveCrab.setSpeed(speed);
          
          
         //}
@@ -47,6 +67,22 @@ public class CrabCommand extends CommandBase {
         return false;
     }
 
+    public double dead(double value, double maxAbs, double minAbs){
+        double calc;
+        
+        if(Math.abs(value) > maxAbs && value > 0){
+            return maxAbs;
+        } else if(Math.abs(value) > maxAbs && value < 0){
+            return -maxAbs;
+        } else if(Math.abs(value) < minAbs && value < 0){
+            return -0;
+        } else if(Math.abs(value) < minAbs && value > 0){
+            return 0;
+        } else{
+            return value;
+        }
+    }
+    
     // Called once after isFinished returns true
     protected void end() {
         driveCrab.stop();

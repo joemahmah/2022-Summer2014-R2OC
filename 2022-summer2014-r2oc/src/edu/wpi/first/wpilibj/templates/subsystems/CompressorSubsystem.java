@@ -31,6 +31,18 @@ public class CompressorSubsystem extends Subsystem {
         comp.stop();
     }
     
+    public void kill(){
+        comp.free();
+    }
+    
+    /*public void toggle(){
+        if(comp.getPressureSwitchValue()){
+            comp.stop();
+        }else{
+            comp.start();
+        }
+    }*/
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new CompressorCommand());

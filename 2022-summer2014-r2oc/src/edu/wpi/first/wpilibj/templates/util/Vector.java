@@ -32,7 +32,7 @@ public class Vector {
     }
     
     public double getAngle(){
-        return angle;
+        return angle * 360;
     }
     
     public double getX(){

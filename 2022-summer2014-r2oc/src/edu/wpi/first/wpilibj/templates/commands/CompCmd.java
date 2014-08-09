@@ -9,21 +9,21 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author Michael
  */
-public class CompressorCommand extends CommandBase {
+public class CompCmd extends CommandBase {
     
-    public CompressorCommand() {
+    public CompCmd() {
         // Use requires() here to declare subsystem dependencies
-        requires(compress);
+        requires(comp);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        compress.start();
+        comp.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //compress.toggle();
+        comp.beSmart();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,14 +33,12 @@ public class CompressorCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-//        compress.stop();
-//        compress.kill();
+        comp.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-//        compress.stop();
-//        compress.kill();
+        comp.stop();
     }
 }

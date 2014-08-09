@@ -16,10 +16,10 @@ public class RobotMap {
     // following variables to use with your drivetrain subsystem.
     // public static final int leftMotor = 1;
     // public static final int rightMotor = 2;
-     public static final int[] soles = {3,4}; //TODO change this
+     public static final int[] soles = {5,4}; //TODO change this
      public static final int[] talons = {10}; // change this
-     public static final int shooterSolenoid1 = 1;
-     public static final int shooterSolenoid2 = 2;
+     public static final int shooterSolenoid1 = 6;
+     public static final int shooterSolenoid2 = 1;
      public static final int shooterVictor = 9;
      
      public static final int CRAB_DRIVE = 1, SWERVE_DRIVE_ROBO = 2, SWERVE_DRIVE_FIELD = 3, TANK_DRIVE = 4, ARCADE_DRIVE = 5;
@@ -36,6 +36,5 @@ public class RobotMap {
     public static final Jaguar driveMotors[] = {new Jaguar(3),new Jaguar(6),new Jaguar(8),new Jaguar(1)};
     public static final Encoder turnEncoders[] = {new Encoder(1, 2,true,CounterBase.EncodingType.k2X),new Encoder(3, 4,true,CounterBase.EncodingType.k2X),new Encoder(7, 8,true,CounterBase.EncodingType.k2X),new Encoder(5, 6,true,CounterBase.EncodingType.k2X)};
     
-    
-    public static final Compressor COMPRESSOR = new Compressor(9,1);
+    public static final Compressor COMPRESSOR = new Compressor(10,1);
 }

@@ -67,13 +67,41 @@ Creates the crabDrive
 *@param talIndex the index for the specific talon that you want to turn
 *@param encodeIndex the index for the encoder for the specific wheel you want to read
 */
-        public void rotate(double angle, int talIndex, int encodeIndex, double speed)
+        public void rotate(double target, int talIndex, int encodeIndex, double speed)
         {
-            SmartDashboard.putString("Encoder " + encodeIndex, "" + turnEncoders[encodeIndex].getRaw());
-            SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegre(turnEncoders[encodeIndex].getRaw()));
-            if(getDegre(turnEncoders[encodeIndex].get())< angle) turnMotors[talIndex].set(limitSpeed(speed)); //not how to move it at an angle
-            else if(getDegre(turnEncoders[encodeIndex].get())> angle) turnMotors[talIndex].set(limitSpeed(speed)); //fix this stuff
-            else{turnMotors[talIndex].set(0); }
+            SmartDashboard.putString("Encoder " + encodeIndex + " calc", "" + getDegree(turnEncoders[encodeIndex].get()));
+            int direction;
+            double current = getDegree(turnEncoders[encodeIndex].get());
+            
+            //double speedMult = limitSpeed(Math.abs(current - target)/5);
+            double speedMult = 1;
+            
+            if(current < (target - 3))
+            {
+               direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+            turnMotors[talIndex].set(limitSpeed(direction*speed * speedMult));
+            SmartDashboard.putString("First", limitSpeed(direction*speed * speedMult) + "");
+            
+            if(Math.abs(current-target) < 3){
+//            if(current < target - 3){
+//                turnMotors[talIndex].set(limitSpeed(-speed * speedMult));
+//                SmartDashboard.putString("First", limitSpeed(speed * speedMult) + "");
+//            }
+//            else if(current > target + 3){
+//                turnMotors[talIndex].set(limitSpeed(speed * speedMult));
+//                SmartDashboard.putString("Seconds", limitSpeed(-speed * speedMult) + "");
+//            }
+//            else{
+//                turnMotors[talIndex].set(0); 
+//                SmartDashboard.putString("We got fuck in the ass by a donkey...", limitSpeed(speed * speedMult) + "");
+//            }
+            turnMotors[talIndex].set(0);
+            }            
         }
         /*
 *Limits the speed input
@@ -92,9 +120,9 @@ Creates the crabDrive
 *gives the degrees based on the the encoder's count at the moment
 *@param count the count
 */
-        public double getDegre(double count)
+        public double getDegree(double count)
         {
-            return (count/250*360)%360;
+            return Math.abs((count/2160.0*360.0)%360);
         }
         
         /*
