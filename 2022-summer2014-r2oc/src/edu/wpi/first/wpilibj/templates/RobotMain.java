@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 import edu.wpi.first.wpilibj.templates.commands.auto.Game1;
 import edu.wpi.first.wpilibj.templates.commands.auto.Game2;
 
@@ -26,7 +25,7 @@ import edu.wpi.first.wpilibj.templates.commands.auto.Game2;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class RobotTemplate extends IterativeRobot {
+public class RobotMain extends IterativeRobot {
 
 
     /**
