@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.CompressorSubsystem;
-import edu.wpi.first.wpilibj.templates.subsystems.CrabDrive;
+import edu.wpi.first.wpilibj.templates.subsystems.CrabDrivePWM;
 import edu.wpi.first.wpilibj.templates.subsystems.PickUpSystem;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
-import edu.wpi.first.wpilibj.templates.subsystems.TankSubsystem;
+import edu.wpi.first.wpilibj.templates.subsystems.TankDrivePWM;
 import edu.wpi.first.wpilibj.templates.subsystems.depricated.UbreComp;
 
 /**
@@ -23,8 +23,8 @@ public abstract class CommandBase extends Command {
     
     // Create a single static instance of all of your subsystems
      public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles,RobotMap.talons[0]);
-     public static CrabDrive driveCrab = new CrabDrive(RobotMap.turnEncoders,RobotMap.turnMotors, RobotMap.driveMotors);
-     public static TankSubsystem tank = new TankSubsystem(RobotMap.driveMotors);
+     public static CrabDrivePWM driveCrab = new CrabDrivePWM(RobotMap.turnEncoders,RobotMap.turnMotors, RobotMap.driveMotors);
+     public static TankDrivePWM tank = new TankDrivePWM(RobotMap.driveMotors);
      public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor);
      public static CompressorSubsystem compress = new CompressorSubsystem(RobotMap.COMPRESSOR);
      

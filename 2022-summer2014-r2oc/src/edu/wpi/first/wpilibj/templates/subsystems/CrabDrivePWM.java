@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.templates.commands.CrabCommand;
 *
 * @author Arturo
 */
-public class CrabDrive extends Subsystem {
+public class CrabDrivePWM extends GenericDrivebasePWM {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 Jaguar[] turnMotors;
@@ -26,7 +26,7 @@ Creates the crabDrive
 @param talPorts the list of ports for all the talons
 @param encoder the list of ports for encoders
 */
-    public CrabDrive(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[])
+    public CrabDrivePWM(Encoder turnEncoders[], Jaguar turnMotors[], Jaguar driveMotors[])
     {
         SmartDashboard.putString("Begin Crab Drive", "");
         

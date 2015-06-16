@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.templates.commands.TankCommand;
  *
  * @author Michael Hrcek
  */
-public class TankSubsystem extends Subsystem {
+public class TankDrivePWM extends GenericDrivebasePWM {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     private Jaguar[] left, right;
     
-    public TankSubsystem(Jaguar motors[]){
+    public TankDrivePWM(Jaguar motors[]){
         
         SmartDashboard.putString("Begin Tank Drive", "");
         left = new Jaguar[2];
