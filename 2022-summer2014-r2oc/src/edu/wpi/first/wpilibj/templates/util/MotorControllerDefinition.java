@@ -11,58 +11,19 @@ import edu.wpi.first.wpilibj.Talon;
  *
  * @author mhrcek
  */
-public class MotorControllerDefinition {
+public class MotorControllerDefinition extends BaseDefinition{
     
-    Talon motorController;
-    Location[] locations;
+    private Talon motorController;
     
-    public MotorControllerDefinition(Talon motorController, Location[] locations){
+    public MotorControllerDefinition(Talon motorController, Location[] locations, String name){
+        super(locations, name);
         this.motorController = motorController;
-        this.locations = locations;
     }
 
     public Talon getMotorController() {
         return motorController;
     }
 
-    public Location[] getLocations() {
-        return locations;
-    }
     
-    public boolean isFront(){
-        for(int i=0; i<locations.length; i++){
-            if(locations[i] == Location.FRONT){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean isLeft(){
-        for(int i=0; i<locations.length; i++){
-            if(locations[i] == Location.LEFT){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean isBack(){
-        for(int i=0; i<locations.length; i++){
-            if(locations[i] == Location.BACK){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean isRight(){
-        for(int i=0; i<locations.length; i++){
-            if(locations[i] == Location.RIGHT){
-                return true;
-            }
-        }
-        return false;
-    }
     
 }
