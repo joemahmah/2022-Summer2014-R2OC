@@ -27,7 +27,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static GenericDrivebasePWM genericDrive = new GenericDrivebasePWM();
     public static PickUpSystem pickUp = new PickUpSystem(RobotMap.soles, RobotMap.talons[0]);
-//    public static CrabDrivePWM driveCrab = new CrabDrivePWM(RobotMap.turnEncoders, RobotMap.turnMotors, RobotMap.driveMotors);
+    public static CrabDrivePWM driveCrab = new CrabDrivePWM(RobotMap.turnEncoders, RobotMap.turnMotors, RobotMap.driveMotors);
     public static TankDrivePWM tank = new TankDrivePWM(RobotMap.driveMotors);
     public static Shooter shooter = new Shooter(RobotMap.shooterSolenoid1, RobotMap.shooterSolenoid2, RobotMap.shooterVictor);
     public static CompressorSubsystem compress = new CompressorSubsystem(RobotMap.COMPRESSOR);

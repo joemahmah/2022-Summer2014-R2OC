@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SolenoidBase;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,21 +25,23 @@ public class GenericDrivebasePWM extends Subsystem {
     private MotorControllerDefinition[] allMovementMotorControllersRight;
     private MotorControllerDefinition[] allTurnMotorControllers;
     private SolenoidDefinition[] allSolenoids;
+    private Encoder[] allEncoders;
     private GenericDrivebasePWM parent;
 
-    public GenericDrivebasePWM(GenericDrivebasePWM parent){
+    public GenericDrivebasePWM(GenericDrivebasePWM parent) {
         this.parent = parent;
     }
 
     protected GenericDrivebasePWM getParent() {
         return parent;
     }
-    
-    public GenericDrivebasePWM(MotorControllerDefinition[] movementControllers, MotorControllerDefinition[] turnControllers, SolenoidDefinition[] solenoids) {
+
+    public GenericDrivebasePWM(MotorControllerDefinition[] movementControllers, MotorControllerDefinition[] turnControllers, SolenoidDefinition[] solenoids, Encoder[] encoders) {
 
         this.allMovementMotorControllers = movementControllers;
         this.allTurnMotorControllers = turnControllers;
         this.allSolenoids = solenoids;
+        this.allEncoders = encoders;
 
         int front = 0, left = 0, back = 0, right = 0;
 
@@ -164,6 +167,10 @@ public class GenericDrivebasePWM extends Subsystem {
 
     protected SolenoidDefinition[] getAllSolenoids() {
         return allSolenoids;
+    }
+
+    protected Encoder[] getAllEncoders() {
+        return allEncoders;
     }
 
     protected MotorControllerDefinition getMovementMotorControllerByName(String name) {
